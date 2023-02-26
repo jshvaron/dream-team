@@ -6,7 +6,17 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 
-function dreamTeam (){
+
+    inquirer.prompt([
+        {
+            type:'checkbox',
+            name: 'EmployeeType',
+            message: 'What type of employee needs to be added?',
+            choices: ['Manager','Engineer', 'Intern', 'Build your Dream Team' ]
+        }
+    ]).then(answers => {
+        console.log('works');
+    });
 
 
 
@@ -32,6 +42,3 @@ function dreamTeam (){
 
 
 
-
-    
-}
