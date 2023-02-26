@@ -5,7 +5,10 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+
+
     function generateTeam(){
+        //Prompt that allows ypu to select the type of employee that is being added.
         inquirer.prompt([
             {
                 type:'list',
@@ -13,6 +16,7 @@ const Intern = require('./lib/Intern');
                 message: 'What type of employee needs to be added?',
                 choices: ['Manager','Engineer', 'Intern', 'Build your Dream Team' ]
             }
+            //answers are then put into a switch case to retrieve relivent data to the added employee
         ]).then(answers => {
             switch(answers.addEmployee){
                 case 'Manager':
@@ -20,7 +24,9 @@ const Intern = require('./lib/Intern');
                 break;
             }
 
+            //addManager function created so when can call the function in the switch case above, it allows the second prompt to populate when 'Manager' is selected.
             function addManager(){
+                //If manager is on duty then the function is being called correctly BOOM!!
                 console.log('manager on duty');
                 
                 inquirer.prompt([
