@@ -4,8 +4,9 @@ const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-
- let mangerPrompt;
+let mangerPrompt;
+let engineerPrompt;
+let internPrompt;
 
 function generateTeam() {
     
@@ -88,6 +89,9 @@ function generateTeam() {
           }
         ]).then(answers => {
             
+         engineerPrompt = new Engineer(answers.engName, answers.engId, answers.engEmail, answers.engGit);
+
+
           if (answers.addAnother) {
             generateTeam();
           } else{
@@ -116,7 +120,7 @@ function generateTeam() {
             },
             {
                 type:'input',
-                name: 'intGit',
+                name: 'intSchool',
                 message: "Enter the Intern's School name."
             },
             {
@@ -125,6 +129,9 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
+
+          internPrompt = new Intern(answers.intName, answers.intId, answers.intEmail, answers.intSchool)
+
           if (answers.addAnother) {
             generateTeam();
           }else{
@@ -133,7 +140,7 @@ function generateTeam() {
         break;
       case 'Build your team?!?!':
         // Exit the program
-        console.log('Team building in progress...', mangerPrompt);
+        console.log('Team building in progress...', mangerPrompt, engineerPrompt, internPrompt);
         break;
     }
   });
