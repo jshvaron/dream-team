@@ -5,7 +5,10 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+ let mangerPrompt;
+
 function generateTeam() {
+    
   inquirer.prompt([
     {
       type: 'list',
@@ -44,12 +47,15 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
              }
         ]).then(answers => {
+
+            mangerPrompt = new Manager(answers.mngrName, answers.mngrId, answers.mngrEmail, answers.mngrOfficeNum);
+
           if (answers.addAnother) {
             generateTeam();
           } else{
             console.log('uhmmmmmmmmm what now?');
-          }
-          
+          };
+
         });
         break;
       case 'Engineer':
@@ -81,6 +87,7 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
+            
           if (answers.addAnother) {
             generateTeam();
           } else{
@@ -126,7 +133,7 @@ function generateTeam() {
         break;
       case 'Build your team?!?!':
         // Exit the program
-        console.log('Team building in progress...');
+        console.log('Team building in progress...', mangerPrompt);
         break;
     }
   });
