@@ -41,7 +41,7 @@ function generateTeam() {
             {
             type: 'confirm',
             name: 'addAnother',
-            message: 'Do you want to add another employee?'
+            message: 'Return to Main menu to add new Employee or Generate your team.'
              }
         ]).then(answers => {
           if (answers.addAnother) {
@@ -78,11 +78,13 @@ function generateTeam() {
             {
             type: 'confirm',
             name: 'addAnother',
-            message: 'Main menu'
+            message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
           if (answers.addAnother) {
             generateTeam();
+          } else{
+            console.log('engine start');
           }
         });
         break;
@@ -113,13 +115,14 @@ function generateTeam() {
             {
             type: 'confirm',
             name: 'addAnother',
-            message: 'Main menu'
+            message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
           if (answers.addAnother) {
             generateTeam();
-          }
-        });
+          }else{
+            console.log(answers);
+        }});
         break;
       case 'Build your team?!?!':
         // Exit the program
