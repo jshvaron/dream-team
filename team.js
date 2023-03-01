@@ -21,12 +21,21 @@ const Intern = require('./lib/Intern');
             switch(answers.addEmployee){
                 case 'Manager':
                 addManager();
-                break;
+                    break;
+                case 'Engineer':
+                addEngineer();
+                    break;
+                case 'Intern':
+                addIntern();
+                    break;
             }
+            
 
-            //addManager function created so when can call the function in the switch case above, it allows the second prompt to populate when 'Manager' is selected.
+            //addManager function allows the Manag
             function addManager(){
-                //If manager is on duty then the function is being called correctly BOOM!!
+
+                inquirer.registerPrompt("loop", require("inquirer-loop")(inquirer));                
+
                 console.log('manager on duty');
                 
                 inquirer.prompt([
@@ -49,12 +58,64 @@ const Intern = require('./lib/Intern');
                         type:'input',
                         name: 'mngrOfficeNum',
                         message: "Enter the manager's office number."
+                    },
+                    {
+                        type: 'loop',
+                        name: 'addOns',
+                        message: 'Add additional employees?',
+                        questions: [
+                            {
+                                type: 'list',
+                                name: 'addOnEmp',
+                                message:'Would you like to add another employee?',
+                                choices: [ 'Engineer' , 'Intern', 'done']
+                                
+                            },
+ 
+                        ]
                     }
+                    
                 ]).then(answers => {
-                console.log(answers);
+                    switch(answers.addOns[0].addOnEmp){
+                        case 'Engineer':
+                        addEngineer();
+                            break;
+                        case 'Intern':
+                        addIntern();  
+                            break;
+                        case 'done':
+                        console.log('Done adding employees');  
+                    }
                 });
             };
-        });    
+
+            function addEngineer(){
+                inquirer.prompt([
+                    {
+                        type:'input',
+                        name: 'engId',
+                        message: "Enter the Engineer's ID."
+                    },
+                    {
+                        type:'input',
+                        name: 'engEmail',
+                        message: "Enter the Engineer's Email."
+                    },
+                    {
+                        type:'input',
+                        name: 'engGit',
+                        message: "Enter the Engineer's github username."
+                    },
+                    
+                ])
+                
+
+            }
+            
+            function addIntern(){
+                console.log('intern!!!');
+            }
+        });   
     }
     generateTeam();
        
