@@ -7,6 +7,7 @@ const Intern = require('./lib/Intern');
 let mangerPrompt;
 let engineerPrompt;
 let internPrompt;
+let dreamTeam;
 
 function generateTeam() {
     
@@ -20,7 +21,7 @@ function generateTeam() {
   ]).then(answers => {
     switch (answers.employeeType) {
       case 'Manager':
-        // Add manager prompts
+        //  manager prompts
         inquirer.prompt([
             {
                 type:'input',
@@ -60,7 +61,7 @@ function generateTeam() {
         });
         break;
       case 'Engineer':
-        // Add engineer prompts
+        //  engineer prompts
         inquirer.prompt([
             {
                 type:'input',
@@ -100,7 +101,7 @@ function generateTeam() {
         });
         break;
       case 'Intern':
-        // Add intern prompts
+        //  intern prompts
         inquirer.prompt([
             {
                 type:'input',
@@ -139,11 +140,19 @@ function generateTeam() {
         }});
         break;
       case 'Build your team?!?!':
-        // Exit the program
+        // QUESTIONMARRRRK
         console.log('Team building in progress...', mangerPrompt, engineerPrompt, internPrompt);
+        
+         dreamTeam = [mangerPrompt, engineerPrompt, internPrompt];
+
+        console.log(dreamTeam);
         break;
     }
   });
+}
+
+function generateHtml() {
+  
 }
 
 generateTeam();
