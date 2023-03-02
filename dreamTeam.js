@@ -7,10 +7,12 @@ const Intern = require('./lib/Intern');
 let mangerPrompt;
 let engineerPrompt;
 let internPrompt;
-let dreamTeam;
+
+let assembleTeam = [];
 
 function generateTeam() {
-    
+  
+
   inquirer.prompt([
     {
       type: 'list',
@@ -52,6 +54,8 @@ function generateTeam() {
 
             mangerPrompt = new Manager(answers.mngrName, answers.mngrId, answers.mngrEmail, answers.mngrOfficeNum);
 
+            assembleTeam.push(mangerPrompt);
+
           if (answers.addAnother) {
             generateTeam();
           } else{
@@ -92,6 +96,7 @@ function generateTeam() {
             
          engineerPrompt = new Engineer(answers.engName, answers.engId, answers.engEmail, answers.engGit);
 
+         assembleTeam.push(engineerPrompt);
 
           if (answers.addAnother) {
             generateTeam();
@@ -131,7 +136,9 @@ function generateTeam() {
           }
         ]).then(answers => {
 
-          internPrompt = new Intern(answers.intName, answers.intId, answers.intEmail, answers.intSchool)
+          internPrompt = new Intern(answers.intName, answers.intId, answers.intEmail, answers.intSchool);
+
+          assembleTeam.push(internPrompt);
 
           if (answers.addAnother) {
             generateTeam();
@@ -140,19 +147,24 @@ function generateTeam() {
         }});
         break;
       case 'Build your team?!?!':
-        // QUESTIONMARRRRK
-        console.log('Team building in progress...', mangerPrompt, engineerPrompt, internPrompt);
+        // remove assemble team before deploying
+        console.log('Team building in progress...');
         
-         dreamTeam = [mangerPrompt, engineerPrompt, internPrompt];
-
-        console.log(dreamTeam);
         break;
+        
     }
+   
   });
+  
+
+  
 }
 
+
+
+
 function generateHtml() {
-  
+
 }
 
 generateTeam();
