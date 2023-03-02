@@ -164,7 +164,7 @@ function generateTeam() {
 
 
 function generateHtml() {
-
+console.log(assembleTeam);
 }
 
 generateTeam();
