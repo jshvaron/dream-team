@@ -1,7 +1,6 @@
-// build html for looks + functional
+const teamgen = team => {
+    const mngrGen = manager => {};
+    const engGen = engineer => {};
+    const intGen = intern => {};
 
-
-// get one employee type to work
-
-
-//loop or switch case through the array
+};

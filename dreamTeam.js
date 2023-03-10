@@ -3,7 +3,8 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const builder = require('./teamtemplate');
+const  pullTemp= require('./teamtemplate');
+
 let mangerPrompt;
 let engineerPrompt;
 let internPrompt;
@@ -157,9 +158,22 @@ function generateTeam() {
   });
   
 }
+////////////////////////////
 
+////////////////////////////////
+function finalForm(){
+  console.log('your team awaits your orders...');
+fs.writeFilesync('team.html', htmlSkeleton(), error =>{
+  if (error){
+    console.log('aw aw aw ');
+    return;
+  }
+  
+});
+};
+finalForm()
 
-
-fs.writeFile('team.html',   htmlContent(assembleTeam) )
 
 generateTeam();
+
+module.exports = assembleTeam;
