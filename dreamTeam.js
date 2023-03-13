@@ -3,7 +3,10 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const  pullTemp= require('./teamtemplate');
+const path = require("path");
+const OUTPUT_DIR = path.resolve(__dirname, "generated files");
+const teamResult = path.join(OUTPUT_DIR, "TheTeam.html");
+const  generateTeamTemplate = require('./teamtemplate');
 
 let mangerPrompt;
 let engineerPrompt;
@@ -149,8 +152,10 @@ function generateTeam() {
         break;
       case 'Build your team?!?!':
         // remove assemble team before deploying
-        console.log('loading...');
+        console.log('loading...')
         
+        fs.writeFile(teamResult, generateTeamTemplate(assembleTeam), (err) =>
+        err ? console.error(err) : console.log('Your team awaits your orders...Check your generated files folder.'));
         break;
         
     }
@@ -158,22 +163,6 @@ function generateTeam() {
   });
   
 }
-////////////////////////////
-
-////////////////////////////////
-function finalForm(){
-  console.log('your team awaits your orders...');
-fs.writeFilesync('team.html', htmlSkeleton(), error =>{
-  if (error){
-    console.log('aw aw aw ');
-    return;
-  }
-  
-});
-};
-finalForm()
-
 
 generateTeam();
 
-module.exports = assembleTeam;
