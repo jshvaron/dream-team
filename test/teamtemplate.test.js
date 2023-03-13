@@ -15,6 +15,6 @@ const team = [
 ];
 const result = teamGen(team);
 expect(result).toContain('<h3><i class="fa-solid fa-mug-hot"></i> Manager</h3>');
-expect(result).toContain('<p class="detail-spacer"> Office Number:101</p>');
-expect(result).toContain('<p class="detail-spacer"> Office Number:102</p>');
+expect(result).toContain('<p class="detail-spacer"> Office Number:1011011001</p>');
+expect(result).toContain('<p class="detail-spacer"> Office Number:1021021022</p>');
 });
