@@ -166,3 +166,5 @@ function generateTeam() {
 
 generateTeam();
 
+module.exports = assembleTeam;
+
