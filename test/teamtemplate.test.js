@@ -30,3 +30,15 @@ test('teamGen generates markup for engineers', () => {
     expect(result).toContain('<p class="detail-spacer"> Github:johndoe</p>');
     expect(result).toContain('<p class="detail-spacer"> Github:janedoe</p>');
   });
+
+//test teamGen array for engineer markup
+test('teamGen generates markup for interns', () => {
+const team = [
+    { getRole: () => 'Intern', getName: () => 'John', getId: () => '1', getEmail: () => 'john@example.com', getSchool: () => 'UCLA' },
+    { getRole: () => 'Intern', getName: () => 'Jane', getId: () => '2', getEmail: () => 'jane@example.com', getSchool: () => 'USC' },
+];
+const result = teamGen(team);
+expect(result).toContain('<h3><i class="fa-solid fa-mug-hot"></i>Intern</h3>');
+expect(result).toContain('<p class="detail-spacer"> School:UCLA</p>');
+expect(result).toContain('<p class="detail-spacer"> School:USC</p>');
+});

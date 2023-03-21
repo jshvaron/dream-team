@@ -8,10 +8,13 @@ const OUTPUT_DIR = path.resolve(__dirname, "generated files");
 const teamResult = path.join(OUTPUT_DIR, "TheTeam.html");
 const  generateTeamTemplate = require('./teamtemplate');
 
+
+// setting these variables to call later in the prompts, to then push to assembleTeam array
 let mangerPrompt;
 let engineerPrompt;
 let internPrompt;
 
+// mangerPrompt, engineerPrompt, internPrompt will be pushed into this array depending on the users input during inquirer. This array will later be used to feed put markup function
 let assembleTeam = [];
 
 function generateTeam() {
@@ -55,7 +58,7 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
              }
         ]).then(answers => {
-
+            // pushes new manager data from user input into assembleTeam[mangerPrompt]
             mangerPrompt = new Manager(answers.mngrName, answers.mngrId, answers.mngrEmail, answers.mngrOfficeNum);
 
             assembleTeam.push(mangerPrompt);
@@ -97,7 +100,7 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
-            
+            // pushes new Engineer data from user input into assembleTeam[engineerPrompt]
          engineerPrompt = new Engineer(answers.engName, answers.engId, answers.engEmail, answers.engGit);
 
          assembleTeam.push(engineerPrompt);
@@ -139,7 +142,7 @@ function generateTeam() {
             message: 'Return to Main menu to add new Employee or Generate your team.'
           }
         ]).then(answers => {
-
+          // pushes new Intern data from user input into assembleTeam[internPrompt]
           internPrompt = new Intern(answers.intName, answers.intId, answers.intEmail, answers.intSchool);
 
           assembleTeam.push(internPrompt);
@@ -153,7 +156,7 @@ function generateTeam() {
       case 'Build your team?!?!':
         // remove assemble team before deploying
         console.log('loading...')
-        
+        //writes file from prompts pushed to assembleTeam array, then ran through generateTeamTemplate Function
         fs.writeFile(teamResult, generateTeamTemplate(assembleTeam), (err) =>
         err ? console.error(err) : console.log('Your team awaits your orders...Check your generated files folder.'));
         break;

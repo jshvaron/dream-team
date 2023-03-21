@@ -46,7 +46,7 @@ const teamGen = team => {
     `};
 
         const markup =[];
-
+            // pushes markups needed to the array
     markup.push(team
         .filter(employee => employee.getRole() === "Manager")
         .map(manager => mngrGen(manager))
@@ -67,7 +67,7 @@ const teamGen = team => {
     return markup.join("");
 };
 
-
+// exports html template with teamgen(assembleTeam) to combine all the data
 module.exports = assembleTeam => {
     return `
     
